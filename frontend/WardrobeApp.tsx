@@ -408,7 +408,7 @@ export default function WardropeApp(props: WardrobeProps) {
         <>
         <Modal
         width={isMobile ? "100vw" : "800px"}
-        height={isMobile ? "100vh" : windowSmall ? "470px" : "600px"}
+        height={isMobile ? "auto" : windowSmall ? "470px" : "600px"}
         icon={<Star variant="16x16_4" />}
         title="Kombe's Wardrobe"
         dragOptions={{
