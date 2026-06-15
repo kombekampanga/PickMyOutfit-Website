@@ -5,15 +5,22 @@ import fs from "fs";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+// When compiled, __dirname is "backend/dist/", so we go up one level to reach "backend/uploads/"
+const UPLOADS_DIR = path.join(__dirname, "..", "uploads");
 
 app.use(cors());
 app.use(express.json());
 
 // Serve static files
-app.use("/images", express.static(path.join(__dirname, "uploads")));
+app.use("/images", express.static(UPLOADS_DIR));
 
 app.get("/getExistingWardrobe", async (req, res) => {
-  const directoryPath = path.join(__dirname, "uploads");
+  const directoryPath = UPLOADS_DIR;
+
+  // Create the uploads folder if it doesn't exist yet (e.g. on a fresh deploy)
+  if (!fs.existsSync(directoryPath)) {
+    fs.mkdirSync(directoryPath, { recursive: true });
+  }
 
   try {
     const isFile = (fileName: fs.PathLike) => {
@@ -35,7 +42,7 @@ app.get("/getExistingWardrobe", async (req, res) => {
 app.get("/wardrobe/:imageName", (req, res) => {
   const { imageName } = req.params;  // Extract the imageName from the URL parameter
 
-  const imagePath = path.join(__dirname, "uploads", imageName);
+  const imagePath = path.join(UPLOADS_DIR, imageName);
 
   // Check if the file exists
   if (fs.existsSync(imagePath)) {
@@ -57,8 +64,8 @@ app.post("/rename-file", (req, res) => {
    return;
   }
 
-  const currentPath = path.join(__dirname, "uploads", currentFileName);
-  const newPath = path.join(__dirname, "uploads", newFileName);
+  const currentPath = path.join(UPLOADS_DIR, currentFileName);
+  const newPath = path.join(UPLOADS_DIR, newFileName);
 
   fs.rename(currentPath, newPath, (err) => {
     if (err) {
@@ -79,13 +86,12 @@ app.post("/upload", (req, res) => {
   }
 
   // Save the file names to a folder (simulating saving)
-  const uploadDir = path.join(__dirname, "uploads");
-  if (!fs.existsSync(uploadDir)) {
-    fs.mkdirSync(uploadDir);
+  if (!fs.existsSync(UPLOADS_DIR)) {
+    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
   }
 
   fileNames.forEach((fileName: string) => {
-    const filePath = path.join(uploadDir, fileName);
+    const filePath = path.join(UPLOADS_DIR, fileName);
     // Create dummy files (replace with actual saving if necessary)
     fs.writeFileSync(filePath, "");
   });
