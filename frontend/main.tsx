@@ -6,7 +6,5 @@ import '@react95/core/GlobalStyle';
 import '@react95/core/themes/candy.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
 )

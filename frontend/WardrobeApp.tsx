@@ -407,15 +407,16 @@ export default function WardropeApp(props: WardrobeProps) {
     return(
         <>
         <Modal
-        width={isMobile ? "95vw" : "800px"}
-        height={isMobile ? "85vh" : windowSmall ? "470px" : "600px"}
+        width={isMobile ? "100vw" : "800px"}
+        height={isMobile ? "100vh" : windowSmall ? "470px" : "600px"}
         icon={<Star variant="16x16_4" />}
         title="Kombe's Wardrobe"
         dragOptions={{
           defaultPosition: {
             x: isMobile ? 0 : screenW,
-            y: screenH,
+            y: isMobile ? 0 : screenH,
           },
+          disabled: isMobile,
         }}
         titleBarOptions={[
           <TitleBar.Help key="help" onClick={() => alert("Help!")} />,
@@ -458,8 +459,8 @@ export default function WardropeApp(props: WardrobeProps) {
         >
           {/* Frame for the entire outfit*/}
           <Frame
-            w={isMobile ? "100%" : "65%"}
-            h={isMobile ? "auto" : "100%"}
+            w="65%"
+            h="100%"
             bgColor="$material"
             boxShadow="$out"
             padding="$4"
@@ -516,8 +517,8 @@ export default function WardropeApp(props: WardrobeProps) {
           </Frame>
           {/*Frame for buttons*/}
           <Frame
-            w={isMobile ? "100%" : "35%"}
-            h={isMobile ? "auto" : "100%"}
+            w="35%"
+            h="100%"
             bgColor="$material"
             boxShadow="$out"
             padding="$4"

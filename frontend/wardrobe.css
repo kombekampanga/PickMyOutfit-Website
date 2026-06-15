@@ -61,18 +61,33 @@
 
 /* Mobile styles */
 @media (max-width: 768px) {
+    /* Modal: fullscreen, fixed, no dragging */
+    .neodrag {
+        position: fixed !important;
+        transform: none !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        touch-action: auto !important;
+    }
+
+    /* Content area scrolls vertically, stacked layout */
     .wardrobe-window {
         flex-direction: column !important;
-        height: auto !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch;
+        align-items: center;
+    }
+
+    /* Make the inner frames full width when stacked */
+    .wardrobe-window > div {
+        width: 100% !important;
     }
 
     .tops-frame, .jackets-frame, .bottoms-frame, .shoes-frame {
-        height: 25vw;
-        width: 25vw;
-    }
-
-    .outfit-frame {
-        gap: 15px;
+        height: 30vw;
+        width: 30vw;
     }
 
     .options-section {
@@ -80,5 +95,7 @@
         flex-wrap: wrap;
         gap: 10px;
         padding: 10px;
+        padding-bottom: 60px;
+        justify-content: center;
     }
 }
