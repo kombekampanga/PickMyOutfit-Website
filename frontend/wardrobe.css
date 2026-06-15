@@ -1,0 +1,60 @@
+.outfit-frame{
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    flex-direction: column;
+    gap: 30px;
+}
+.clothing-element-frame {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    flex-direction: row;
+    gap: 10px;
+}
+
+.tops-frame, .jackets-frame, .bottoms-frame, .shoes-frame {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    height: 20vh; 
+    width: 20vh;
+}
+
+.wardrobe-window {
+    display: flex;
+    flex-direction: row;
+}
+
+.options-section {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    flex-direction: column;
+    gap: 20px
+}
+
+.options-button {
+    width: "100%";
+    height: 40px;
+    background-color: palevioletred;
+}
+
+#random-outfit-button {
+    background-color: #cba0c2
+}
+
+#weather-button {
+    background-color: lightblue;
+}
+
+#occasion-button {
+    background-color: lightyellow;
+}
+
+/* #88245c - colour of the banner*/ 
+
+.clothing-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the area without distorting */
+}

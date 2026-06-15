@@ -1,0 +1,8 @@
+.desktop {
+    height: 100vh; /* Ensure the div takes up the full viewport height */
+}
+
+.desktop-icons {
+    margin-left: 20px;
+    padding-top: 20px
+}
